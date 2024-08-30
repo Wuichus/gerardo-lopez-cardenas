@@ -1,29 +1,35 @@
 {
   "compilerOptions": {
+    "lib": ["dom", "dom.iterable", "esnext"],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
     "moduleResolution": "node",
     "target": "es2016",                                  /* Set the JavaScript language version for emitted JavaScript and include compatible library declarations. */
-    "module": "commonjs",                                /* Specify what module code is generated. */
-    "rootDir": "./src",
-    "baseUrl": ".",
-    "paths": {
-      "@components/*":["./src/components/*",],
-      "@services/*":["./src/services/*",],
-      "@routes/*":["./src/routes/*",],
-      "@-types/*":["./src/types/*",],
-      "@utils/*":["./src/utils/*",],
-    },
-    "typeRoots":["./node_modules/@types", "./src/types"],
-    "outDir": "build",                                   /* Specify an output folder for all emitted files. */
-    "esModuleInterop": true,                             /* Emit additional JavaScript to ease support for importing CommonJS modules. This enables 'allowSyntheticDefaultImports' for type compatibility. */
-    "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
-    "strict": true,                                     /* Enable all strict type-checking options. */
+    "module": "commonjs",     
     "resolveJsonModule": true,
-    "noUnusedLocals": true,                           /* Enable error reporting when local variables aren't read. */
-    "noUnusedParameters": true,                       /* Raise an error when a function parameter isn't read. */
-    "noImplicitReturns": true,                        /* Enable error reporting for codepaths that do not explicitly return in a function. */
-    "noFallthroughCasesInSwitch": true,               /* Enable error reporting for fallthrough cases in switch statements. */
-    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+    "isolatedModules": true,
+    "jsx": "preserve",
+    "incremental": true,
+    "noUnusedLocals": true /* Report errors on unused locals. */,
+    "noUnusedParameters": true,
+    "baseUrl": ".",
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@Controllers/*": ["./src/controllers/*"],
+      "@Middlewares/*": ["./src/middlewares/*"],
+      "@Providers/*": ["./src/providers/*"],
+      "@Routes/*": ["./src/routes/*"],
+      "@Types/*": ["./src/types/*"],
+      "@Utils/*": ["./src/utils/*"]
+    }
   },
-  "include": ["src/**/*"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
   "exclude": ["node_modules"]
 }

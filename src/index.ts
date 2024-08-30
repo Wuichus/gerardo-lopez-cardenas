@@ -1,26 +1,28 @@
-import express, { type Express, type Request, type Response } from 'express'
+import express from 'express'
 
 import cors from 'cors'
 
 import dotenv from 'dotenv'
 
-import router from './routes/api-routes'
+import MainRouter from './routes/index'
+
+import authRoutes from '@Middlewares/auth/authMiddleware'
+
+import AuthRoutes from '@Routes/auth'
 
 dotenv.config()
 
-const app: Express = express()
+const port = process.env.PORT ?? '3000'
+
+const app = express()
 
 app.use(express.json())
 
-app.use(express.urlencoded({ extended: true }))
+app.use('/api/v1', cors(), AuthRoutes)
 
-app.use('/api', cors(), router)
+app.use(authRoutes)
 
-const port = process.env.PORT ?? '3000'
-
-app.get('/', (_: Request, res: Response) => {
-  res.send('Express + TypeScript Server')
-})
+app.use('/api/v1', cors(), MainRouter)
 
 app.listen(port, () => {
   console.log(`⚡️[server]: Server is running at http://localhost:${port}`) // eslint-disable-line no-console
